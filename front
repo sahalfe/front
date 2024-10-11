@@ -28,22 +28,18 @@
             animation: fadeOut 5s forwards;
         }
 
-        /* Logo com "Feed" e "Back" centralizados */
+        /* Logo "Feedback" */
         .logo {
             font-size: 5em;
-            color: black;
+            color: white;
             position: relative;
             z-index: 2;
             text-align: center;
         }
 
-        .logo .feed {
-            display: block;
-        }
-
-        .logo .back {
-            display: block;
-            margin-top: 10px;
+        .logo span {
+            font-size: 0.5em;
+            color: black;
         }
 
         /* Círculos que fazem o efeito de zoom */
@@ -142,10 +138,7 @@
 
     <!-- Tela de animação -->
     <div id="animation-screen">
-        <div class="logo">
-            <div class="feed">Feed</div>
-            <div class="back">Back</div>
-        </div>
+        <div class="logo"><span>Feedback</span></div>
         <div class="circle circle1"></div>
         <div class="circle circle2"></div>
         <div class="circle circle3"></div>
@@ -179,3 +172,4 @@
 
 </body>
 </html>
+
