@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animação de Feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,22 +14,20 @@
 
         body, html {
             height: 100%;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
-        /* Animação da tela inicial */
         #animation-screen {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #007bff; /* Azul inicial */
+            background-color: #001f3f;
             height: 100%;
             overflow: hidden;
             position: relative;
             animation: fadeOut 5s forwards;
         }
 
-        /* Logo "Feedback" */
         .logo {
             font-size: 5em;
             color: white;
@@ -37,16 +36,10 @@
             text-align: center;
         }
 
-        .logo span {
-            font-size: 0.5em;
-            color: black;
-        }
-
-        /* Círculos que fazem o efeito de zoom */
         .circle {
             position: absolute;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
             animation: zoomCircle 5s forwards;
         }
 
@@ -92,12 +85,11 @@
             }
         }
 
-        /* Tela de login */
         #login-screen {
             display: none;
             justify-content: center;
             align-items: center;
-            background-color: #1E1E1E; /* Fundo escuro */
+            background-color: #001f3f;
             height: 100%;
         }
 
@@ -106,31 +98,216 @@
         }
 
         .login-container {
-            background-color: #fff;
-            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
             border-radius: 10px;
             text-align: center;
             width: 300px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
         .login-container h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #000;
+            color: #fff;
         }
 
         .login-container button {
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 10px;
+            margin: 10px 0;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .login-container button:hover {
             background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .cadastro-screen {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: #001f3f;
+            height: 100%;
+            color: white;
+        }
+
+        .cadastro-screen.active {
+            display: flex;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .container input {
+            box-sizing: border-box;
+            width: 100%;
+            height: 46px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+            transition: border-color 0.3s;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .container input:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+
+        .container button {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .voltar {
+            background-color: #ff3333;
+        }
+
+        .voltar:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            display: none;
+            color: #ff3333;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        #perfil {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            background-color: #001f3f;
+        }
+
+        #perfil.active {
+            display: flex;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header h2 {
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .header h2 i {
+            margin-right: 10px;
+        }
+
+        .search {
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .menu {
+            cursor: pointer;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        /* Estilo do link de acesso */
+        .access-link {
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .access-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo dos resultados da busca */
+        .result-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .result-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-card h3 {
+            color: white;
+            margin: 5px 0;
+        }
+
+        .result-card p {
+            color: #bbb;
+            margin: 0;
         }
     </style>
 </head>
@@ -153,6 +330,107 @@
         </div>
     </div>
 
+    <!-- Tela de cadastro de Funcionário -->
+    <div id="cadastro-funcionario" class="cadastro-screen">
+        <div class="container">
+            <h1>Cadastro Funcionário</h1>
+            <input type="text" id="nome-funcionario" placeholder="Nome Completo" required>
+            <div class="error-message" id="nome-funcionario-error">Campo obrigatório</div>
+            <input type="email" id="email-funcionario" placeholder="E-mail" required>
+            <div class="error-message" id="email-funcionario-error">Campo obrigatório</div>
+            <input type="email" id="repetir-email-funcionario" placeholder="Repetir E-mail" required>
+            <div class="error-message" id="repetir-email-funcionario-error">Campo obrigatório</div>
+            <input type="password" id="senha-funcionario" placeholder="Senha" required>
+            <div class="error-message" id="senha-funcionario-error">Campo obrigatório</div>
+            <input type="password" id="repetir-senha-funcionario" placeholder="Repetir Senha" required>
+            <div class="error-message" id="repetir-senha-funcionario-error">Campo obrigatório</div>
+            <button onclick="proceedToProfile('funcionario')">Cadastrar</button>
+            <button class="voltar" onclick="voltar()">Voltar</button>
+            <div class="access-link" onclick="goToLogin()">Já tem conta? Acesse aqui</div>
+        </div>
+    </div>
+
+    <!-- Tela de cadastro de Gestor -->
+    <div id="cadastro-gestor" class="cadastro-screen">
+        <div class="container">
+            <h1>Cadastro Gestor</h1>
+            <input type="text" id="nome-gestor" placeholder="Nome Completo" required>
+            <div class="error-message" id="nome-gestor-error">Campo obrigatório</div>
+            <input type="email" id="email-gestor" placeholder="E-mail" required>
+            <div class="error-message" id="email-gestor-error">Campo obrigatório</div>
+            <input type="email" id="repetir-email-gestor" placeholder="Repetir E-mail" required>
+            <div class="error-message" id="repetir-email-gestor-error">Campo obrigatório</div>
+            <input type="password" id="senha-gestor" placeholder="Senha" required>
+            <div class="error-message" id="senha-gestor-error">Campo obrigatório</div>
+            <input type="password" id="repetir-senha-gestor" placeholder="Repetir Senha" required>
+            <div class="error-message" id="repetir-senha-gestor-error">Campo obrigatório</div>
+            <button onclick="proceedToProfile('gestor')">Cadastrar</button>
+            <button class="voltar" onclick="voltar()">Voltar</button>
+            <div class="access-link" onclick="goToLogin()">Já tem conta? Acesse aqui</div>
+        </div>
+    </div>
+
+    <!-- Tela de Login -->
+    <div id="login-page" class="cadastro-screen">
+        <div class="container">
+            <h1>Login</h1>
+            <input type="text" id="login-nome-email" placeholder="Nome ou E-mail" required>
+            <div class="error-message" id="login-nome-email-error">Campo obrigatório</div>
+            <input type="password" id="login-senha" placeholder="Senha" required>
+            <div class="error-message" id="login-senha-error">Campo obrigatório</div>
+            <button onclick="login()">Entrar</button>
+            <div class="access-link" onclick="backToLoginScreen()">Voltar ao login</div>
+        </div>
+    </div>
+
+    <!-- Tela de perfil -->
+    <div id="perfil" class="perfil">
+        <div class="header">
+            <h2><i class="fas fa-user"></i>Seu Perfil</h2>
+            <div class="menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="search">
+            <input type="text" id="search-input" placeholder="Buscar..." oninput="filterResults()">
+        </div>
+
+        <div id="result-container" class="result-container"></div> <!-- Container para resultados -->
+
+        <div id="default-results" class="result-container">
+            <div class="result-card">
+                <h3>João Silva</h3>
+                <p>Profissão: T.I</p>
+            </div>
+            <div class="result-card">
+                <h3>Maria Oliveira</h3>
+                <p>Profissão: Engenharia</p>
+            </div>
+            <div class="result-card">
+                <h3>Lucas Pereira</h3>
+                <p>Profissão: Chefe de Cozinha</p>
+            </div>
+            <div class="result-card">
+                <h3>Ana Costa</h3>
+                <p>Profissão: Designer Gráfico</p>
+            </div>
+            <div class="result-card">
+                <h3>Fernando Santos</h3>
+                <p>Profissão: Marketing</p>
+            </div>
+            <div class="result-card">
+                <h3>Cláudia Ribeiro</h3>
+                <p>Profissão: Recursos Humanos</p>
+            </div>
+            <div class="result-card">
+                <h3>Ricardo Almeida</h3>
+                <p>Profissão: Psicólogo</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Função para mudar de tela após a animação
         setTimeout(() => {
@@ -162,14 +440,112 @@
 
         // Função para redirecionar para as páginas correspondentes
         function redirectTo(tipo) {
+            document.getElementById('login-screen').style.display = 'none';
             if (tipo === 'funcionario') {
-                window.location.href = "cadastro_funcionario.html";
+                document.getElementById('cadastro-funcionario').classList.add('active');
             } else if (tipo === 'gestor') {
-                window.location.href = "cadastro_gestor.html";
+                document.getElementById('cadastro-gestor').classList.add('active');
             }
         }
-    </script>
 
+        // Função para proceder ao perfil após cadastro
+        function proceedToProfile(tipo) {
+            let isValid = true; // Flag para verificar a validade dos campos
+
+            // Limpar mensagens de erro
+            clearErrorMessages(tipo);
+
+            // Verificar se os campos estão preenchidos
+            const inputs = document.querySelectorAll(`#cadastro-${tipo} input`);
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    document.getElementById(`${input.id}-error`).style.display = 'block';
+                    isValid = false; // Marcar como inválido
+                }
+            });
+
+            // Se todos os campos estiverem preenchidos, prosseguir para o perfil
+            if (isValid) {
+                document.getElementById('cadastro-funcionario').classList.remove('active');
+                document.getElementById('cadastro-gestor').classList.remove('active');
+                document.getElementById('perfil').classList.add('active');
+                displayResults(); // Exibe os resultados ao entrar no perfil
+            }
+        }
+
+        // Função para limpar mensagens de erro
+        function clearErrorMessages(tipo) {
+            const errorMessages = document.querySelectorAll(`#cadastro-${tipo} .error-message`);
+            errorMessages.forEach(errorMessage => {
+                errorMessage.style.display = 'none'; // Ocultar mensagens de erro
+            });
+        }
+
+        // Função para voltar para a tela anterior
+        function voltar() {
+            document.getElementById('cadastro-funcionario').classList.remove('active');
+            document.getElementById('cadastro-gestor').classList.remove('active');
+            document.getElementById('login-screen').classList.add('active');
+        }
+
+        // Função para ir para a tela de login
+        function goToLogin() {
+            document.getElementById('cadastro-funcionario').classList.remove('active');
+            document.getElementById('cadastro-gestor').classList.remove('active');
+            document.getElementById('login-page').classList.add('active');
+        }
+
+        // Função para voltar à tela de login principal
+        function backToLoginScreen() {
+            document.getElementById('login-page').classList.remove('active');
+            document.getElementById('login-screen').classList.add('active');
+        }
+
+        // Função de login (placeholder)
+        function login() {
+            // Aqui você pode adicionar a lógica para validar o login
+            let isValid = true; // Substitua pela lógica de validação
+
+            clearErrorMessages('login');
+
+            const loginEmail = document.getElementById('login-nome-email');
+            const loginSenha = document.getElementById('login-senha');
+
+            if (loginEmail.value.trim() === '') {
+                document.getElementById('login-nome-email-error').style.display = 'block';
+                isValid = false;
+            }
+
+            if (loginSenha.value.trim() === '') {
+                document.getElementById('login-senha-error').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Aqui você pode redirecionar para o perfil ou outra página
+                document.getElementById('login-page').classList.remove('active');
+                document.getElementById('perfil').classList.add('active');
+                displayResults(); // Exibe os resultados ao entrar no perfil
+            }
+        }
+
+        // Função para exibir os resultados da busca
+        function displayResults() {
+            const resultContainer = document.getElementById('result-container');
+            const defaultResults = document.getElementById('default-results');
+            resultContainer.innerHTML = defaultResults.innerHTML; // Clona os resultados padrão
+        }
+
+        // Função para filtrar resultados
+        function filterResults() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const resultCards = document.querySelectorAll('.result-card');
+
+            resultCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(input) ? 'block' : 'none'; // Exibir ou ocultar cards
+            });
+        }
+    </script>
 </body>
 </html>
-
