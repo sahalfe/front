@@ -92,3 +92,4 @@ h1 {
     outline: none; /* Remover outline de foco */
     box-shadow: 0 0 0 4px rgba(74, 111, 167, 0.5); /* Efeito de foco com borda azul */
 }
+
