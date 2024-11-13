@@ -17,5 +17,15 @@
             <button id="funcionario" class="role-button">Funcionário</button>
         </div>
     </div>
+    
+    <!-- Link para página de cadastro -->
+    <div class="login-link">
+        <p><a href="FaçaSeuCadastro.html"></a></p>
+    </div>
+
+     <!--Link para o arquivo javaScript-->
+     <script src="SejaBemVindo.js"></script>
+
+    </body>
 </body>
 </html>
